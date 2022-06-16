@@ -1,0 +1,35 @@
+.calculator {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.calculator-result {
+  font-size: 48px;
+  margin-bottom: 60px;
+}
+
+.calculator-form > input, select {
+  display: block;
+  font-size: 48px;
+  max-width: 30%;
+  min-width: 250px;
+  background-color: transparent;
+  color: black;
+}
+
+.calculator-form > span {
+  font-size: 48px;
+  line-height: 1;
+}
+
+.calculator-form {
+  display: flex;
+  justify-content: center;
+  gap: 10px 40px;
+  width: 100%;
+  flex-wrap: wrap;
+}

@@ -1,24 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
+import { getCurrentRate } from './api/api';
 import './App.css';
+import { Calculator } from './components/Calculator/Calculator';
+import { Header } from './components/Header/Header';
+import { IRate } from './interfaces/rate';
 
-function App() {
+const defaultRate = [{
+  ccy: '',
+  base_ccy: '',
+  buy: '',
+  sale: '',
+}]
+
+const App: React.FC = () => {
+  const [rate, setRate] = useState<IRate[]>(defaultRate);
+  const [isRate, setIsRate] = useState(false);
+
+  useEffect(() => {
+    getCurrentRate()
+    .then(rate => setRate(rate))
+    }, [isRate]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header allRate={rate}/>
+      <Calculator allRate={rate}/>
     </div>
   );
 }

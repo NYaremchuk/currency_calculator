@@ -1,0 +1,19 @@
+.currency-list {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 5px 20px;
+  padding: 10px 20px;
+  width: 100%;
+  color: white;
+  list-style: none;
+  background-color: rgb(225, 135, 18);
+}
+
+.currency-list > li > span {
+  margin-right: 20px;
+}
+
+.currency-list > li > span:first-child {
+  margin-right: 10px;
+}
