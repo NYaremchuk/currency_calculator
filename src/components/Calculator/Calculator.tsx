@@ -15,6 +15,7 @@ export const Calculator: React.FC<Props> = ({ allRate }) => {
   const [selectedCurrency, setselectedCurrency] = useState<string>('usd');
   const [selectedRate, setselectedRate] = useState<Currency>(8);
   const [usedInput, setUsedInput] = useState<String>('');
+  const [usedSelect, setUsedSelect] = useState<String>('');
 
   useEffect(() => {
     const rate = allRate.filter(rate =>
@@ -23,22 +24,16 @@ export const Calculator: React.FC<Props> = ({ allRate }) => {
      if (rate) {
        setselectedRate(+rate);
      }
-     console.log('Курс зі стейт' + selectedRate, 'Курс з апі:' + rate, 'Valuta:' + selectedCurrency);
 
      switch (usedInput) {
       case 'national':
         if (national) {
-          console.log("інпут грн");
-          
-          console.log('---сума грн:' + national, "вибраний курс:" + selectedRate);
-          
           const divide = national / selectedRate;
           setCurrency(+divide.toFixed(2));
         }
         break;
 
         case 'currency':
-          
           if (currency) {
             console.log('інпут валюта');
             const multiply = currency * selectedRate;
@@ -52,7 +47,7 @@ export const Calculator: React.FC<Props> = ({ allRate }) => {
 
   const handleChangeCurrency = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setselectedCurrency(event.target.value.toLocaleLowerCase());
-    console.log(event.target.value.toLocaleLowerCase());
+    setUsedSelect(event.target.name);
   }
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -64,7 +59,6 @@ export const Calculator: React.FC<Props> = ({ allRate }) => {
           setNational(+event.target.value);
           const divide = +event.target.value / selectedRate;
           setCurrency(+divide.toFixed(2));
-          console.log('amount:' + divide, 'rate:' + selectedRate, 'event:' + event.target.value);
           break;
 
         case 'currency':
@@ -88,6 +82,14 @@ export const Calculator: React.FC<Props> = ({ allRate }) => {
           value={national ?? ''}
           onChange={handleChange}
         />
+        {/* <select
+          name="national"
+          onChange={handleChangeCurrency}
+        >
+          {allRate.map(el => (
+            <option value={el.ccy} key={el.ccy}>{el.ccy}</option>
+          ))}
+        </select> */}
         <span>=</span>
         <input
           placeholder='Валюта'
@@ -97,7 +99,7 @@ export const Calculator: React.FC<Props> = ({ allRate }) => {
           onChange={handleChange}
         />
         <select
-          name="Choose currency"
+          name="currency"
           onChange={handleChangeCurrency}
         >
           {allRate.map(el => (

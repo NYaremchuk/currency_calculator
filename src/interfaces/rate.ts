@@ -10,5 +10,4 @@ export enum AllCurrency {
   usd = 'USD',
   eur = 'EUR',
   btc = 'BTC'
-
 }

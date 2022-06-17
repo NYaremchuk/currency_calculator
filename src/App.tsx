@@ -6,10 +6,10 @@ import { Header } from './components/Header/Header';
 import { IRate } from './interfaces/rate';
 
 const defaultRate = [{
-  ccy: '',
-  base_ccy: '',
-  buy: '',
-  sale: '',
+  ccy: 'uah',
+  base_ccy: 'uah',
+  buy: '0',
+  sale: '0',
 }]
 
 const App: React.FC = () => {
